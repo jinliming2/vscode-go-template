@@ -1,0 +1,70 @@
+{
+  "name": "vscode-go-template",
+  "displayName": "Go Template Support",
+  "description": "Syntax highlight support for Go text/template and html/template",
+  "version": "0.0.1",
+  "publisher": "jinliming2",
+  "license": "MIT",
+  "homepage": "https://github.com/jinliming2/vscode-go-template",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jinliming2/vscode-go-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinliming2/vscode-go-template/issues",
+    "email": "jinliming2@gmail.com"
+  },
+  "engines": {
+    "vscode": "^1.20.0"
+  },
+  "galleryBanner": {
+    "theme": "dark"
+  },
+  "icon": "assets/logo.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "go",
+    "template",
+    "highlight",
+    "syntax"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "go-template",
+        "aliases": [
+          "Go Template",
+          "go-template"
+        ],
+        "extensions": [
+          ".go.txt",
+          ".go.tpl",
+          ".go.tmpl"
+        ],
+        "firstLine": "\\s*\\{\\{-?\\s*\\/\\*.*?\\*\\/\\s*-?\\}\\}\\s*",
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "go-template",
+        "scopeName": "source.go-template",
+        "path": "./syntaxes/go-template.tmLanguage.json"
+      },
+      {
+        "language": "go-template",
+        "scopeName": "text.injection.go-template",
+        "path": "./syntaxes/injection.go-template.tmLanguage.json",
+        "injectTo": [
+          "source.css",
+          "source.js",
+          "source.json",
+          "text.html",
+          "text.xml"
+        ]
+      }
+    ]
+  }
+}
