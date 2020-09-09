@@ -18,6 +18,7 @@
     "vscode": "^1.20.0"
   },
   "galleryBanner": {
+    "color": "#232323",
     "theme": "dark"
   },
   "icon": "assets/logo.png",
