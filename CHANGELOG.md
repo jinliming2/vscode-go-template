@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- Support syntax highlighting for Go Template embedded in literal string in Go source file.
 
 ## [0.0.1] - 2020-09-09
 ### Added
