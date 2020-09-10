@@ -103,11 +103,11 @@
 			"patterns": [
 				{
 					"match": "\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})",
-					"name": "constant.character.escape.go"
+					"name": "constant.character.escape.go-template"
 				},
 				{
 					"match": "\\\\[^0-7xuUabfnrtv\\'\"]",
-					"name": "invalid.illegal.unknown-escape.go"
+					"name": "invalid.illegal.unknown-escape.go-template"
 				}
 			]
 		},
@@ -115,7 +115,7 @@
 			"patterns": [
 				{
 					"match": "%(\\[\\d+\\])?([\\+#\\-0\\x20]{,2}((\\d+|\\*)?(\\.?(\\d+|\\*|(\\[\\d+\\])\\*?)?(\\[\\d+\\])?)?))?[vT%tbcdoqxXUbeEfFgGspw]",
-					"name": "constant.other.placeholder.go"
+					"name": "constant.other.placeholder.go-template"
 				}
 			]
 		}
