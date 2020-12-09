@@ -42,7 +42,8 @@
         "extensions": [
           ".go.txt",
           ".go.tpl",
-          ".go.tmpl"
+          ".go.tmpl",
+          ".gtpl"
         ],
         "firstLine": "\\s*\\{\\{-?\\s*\\/\\*.*?\\*\\/\\s*-?\\}\\}\\s*",
         "configuration": "./language-configuration.json"
