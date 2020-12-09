@@ -13,13 +13,13 @@
 			"include": "#keywords"
 		},
 		{
-			"begin": "\"",
+			"begin": "\\\\?\"",
 			"beginCaptures": {
 				"0": {
 					"name": "punctuation.definition.string.begin.go-template"
 				}
 			},
-			"end": "\"",
+			"end": "\\\\?\"",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.string.end.go-template"

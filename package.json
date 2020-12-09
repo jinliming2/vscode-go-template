@@ -57,8 +57,14 @@
       },
       {
         "language": "go-template",
-        "scopeName": "source.go.injection.go-template",
-        "path": "./syntaxes/go.go-template.tmLanguage.json",
+        "scopeName": "source.go.injection.double.go-template",
+        "path": "./syntaxes/go-double.go-template.tmLanguage.json",
+        "injectTo": ["source.go"]
+      },
+      {
+        "language": "go-template",
+        "scopeName": "source.go.injection.raw.go-template",
+        "path": "./syntaxes/go-raw.go-template.tmLanguage.json",
         "injectTo": ["source.go"]
       },
       {

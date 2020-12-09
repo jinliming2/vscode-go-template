@@ -1,8 +1,8 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Go Injection Template",
-	"scopeName": "source.go.injection.go-template",
-	"injectionSelector": "L:string.quoted",
+	"scopeName": "source.go.injection.double.go-template",
+	"injectionSelector": "L:string.quoted.double",
 	"patterns": [
 		{
 			"include": "#go-template-tag"
@@ -16,7 +16,7 @@
 					"name": "punctuation.section.embedded.begin.go-template"
 				}
 			},
-			"end": "\\s*-?\\}\\}",
+			"end": "\\s*-?\\}\\}|(?<!\\\\)(?=\")",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.section.embedded.end.go-template"
