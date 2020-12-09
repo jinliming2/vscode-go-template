@@ -34,11 +34,12 @@ Go Template Syntax Highlight Support for VSCode.
 
 ## Release Notes
 
-## [0.0.3] - 2020-12-09
+### 0.0.3 (2020-12-09)
+
 - Fix: syntax error when missing template-ending in go source.
 
-## [0.0.2] - 2020-12-09
-### Added
+### 0.0.2 (2020-12-09)
+
 - Support syntax highlighting for Go Template embedded in literal string in Go source file.
 - Support syntax highlighting for Go Template files: `*.gtpl`.
 
