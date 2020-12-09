@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+## [0.0.3] - 2020-12-09
+- Fix: syntax error when missing template-ending in go source.
+
 ## [0.0.2] - 2020-12-09
 ### Added
 - Support syntax highlighting for Go Template embedded in literal string in Go source file.

@@ -15,21 +15,27 @@ Go Template Syntax Highlight Support for VSCode.
 
 ## Features
 
+- Support syntax highlighting for Go Template embedded in literal string in Go source file.
+
+   ![Go](./assets/screenshots/go.png)
 - Support syntax highlighting for Go Template files: `*.go.txt`, `*.go.tpl`, `*.go.tmpl`, `*.gtpl`.
 
-   ![HTML File](./assets/screenshots/tpl.png)
+   ![Template](./assets/screenshots/tpl.png)
 - Support syntax highlighting for Go Template embedded in `HTML`, `JS`, and `CSS` files.
 
-   ![HTML File](./assets/screenshots/html.png)
+   ![HTML](./assets/screenshots/html.png)
 - Support syntax highlighting for Go Template embedded in unknown extension files which begin with Go Template Comment. Ex: `{{ /* Go Template */ }}`.
 
-   ![HTML File](./assets/screenshots/comment.png)
+   ![Comment](./assets/screenshots/comment.png)
 
 ## Known Issues
 
 1. Template syntax highlighting in JS and CSS files may cause syntax error.
 
 ## Release Notes
+
+## [0.0.3] - 2020-12-09
+- Fix: syntax error when missing template-ending in go source.
 
 ## [0.0.2] - 2020-12-09
 ### Added

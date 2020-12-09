@@ -2,7 +2,7 @@
   "name": "vscode-go-template",
   "displayName": "Go Template Support",
   "description": "Syntax highlight support for Go text/template and html/template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "jinliming2",
   "license": "MIT",
   "homepage": "https://github.com/jinliming2/vscode-go-template",
