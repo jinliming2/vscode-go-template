@@ -2,7 +2,7 @@
   "name": "vscode-go-template",
   "displayName": "Go Template Support",
   "description": "Syntax highlight support for Go text/template and html/template",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "publisher": "jinliming2",
   "license": "MIT",
   "homepage": "https://github.com/jinliming2/vscode-go-template",
@@ -15,7 +15,7 @@
     "email": "jinliming2@gmail.com"
   },
   "engines": {
-    "vscode": "^1.20.0"
+    "vscode": "^1.44.0"
   },
   "galleryBanner": {
     "color": "#232323",
@@ -31,6 +31,36 @@
     "highlight",
     "syntax"
   ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "1.0.7",
+    "@types/glob": "7.1.3",
+    "@types/mocha": "8.2.0",
+    "@types/node": "12",
+    "@types/vscode": "1.44.0",
+    "@typescript-eslint/eslint-plugin": "4.12.0",
+    "@typescript-eslint/parser": "4.12.0",
+    "eslint": "7.17.0",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-plugin-prettier": "3.3.1",
+    "glob": "7.1.6",
+    "mocha": "8.2.1",
+    "nyc": "15.1.0",
+    "prettier": "2.2.1",
+    "typescript": "4.1.3",
+    "vscode-test": "1.4.1"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "contributes": {
     "languages": [
       {
@@ -45,7 +75,7 @@
           ".go.tmpl",
           ".gtpl"
         ],
-        "firstLine": "\\s*\\{\\{-?\\s*\\/\\*.*?\\*\\/\\s*-?\\}\\}\\s*",
+        "firstLine": "\\s*\\{\\{(-\\s)?\\/\\*.*?\\*\\/(\\s-)?\\}\\}\\s*",
         "configuration": "./language-configuration.json"
       }
     ],
@@ -59,13 +89,17 @@
         "language": "go-template",
         "scopeName": "source.go.injection.double.go-template",
         "path": "./syntaxes/go-double.go-template.tmLanguage.json",
-        "injectTo": ["source.go"]
+        "injectTo": [
+          "source.go"
+        ]
       },
       {
         "language": "go-template",
         "scopeName": "source.go.injection.raw.go-template",
         "path": "./syntaxes/go-raw.go-template.tmLanguage.json",
-        "injectTo": ["source.go"]
+        "injectTo": [
+          "source.go"
+        ]
       },
       {
         "language": "go-template",
@@ -79,6 +113,111 @@
           "text.xml"
         ]
       }
-    ]
+    ],
+    "semanticTokenScopes": [
+      {
+        "scopes": {
+          "goTemplate": [
+            "source.go-template"
+          ],
+          "begin": [
+            "punctuation.section.embedded.begin.go-template"
+          ],
+          "end": [
+            "punctuation.section.embedded.end.go-template"
+          ],
+          "rawString": [
+            "string.quoted.raw.go-template"
+          ],
+          "assignment": [
+            "keyword.operator.assignment.go-template"
+          ],
+          "pipe": [
+            "keyword.operator.pipe.go-template"
+          ],
+          "control": [
+            "keyword.control.go-template"
+          ],
+          "builtin": [
+            "support.function.builtin.go-template"
+          ],
+          "stringEscape": [
+            "constant.character.escape.go-template"
+          ],
+          "unknownEscape": [
+            "invalid.illegal.unknown-escape.go-template"
+          ],
+          "placeholder": [
+            "constant.other.placeholder.go-template"
+          ]
+        }
+      }
+    ],
+    "semanticTokenTypes": [
+      {
+        "id": "goTemplate"
+      },
+      {
+        "id": "begin",
+        "superType": "operator",
+        "description": "Begin of Go Template"
+      },
+      {
+        "id": "end",
+        "superType": "operator",
+        "description": "End of Go Template"
+      },
+      {
+        "id": "rawString",
+        "superType": "string"
+      },
+      {
+        "id": "assignment",
+        "superType": "operator"
+      },
+      {
+        "id": "pipe",
+        "superType": "operator"
+      },
+      {
+        "id": "control",
+        "superType": "keyword"
+      },
+      {
+        "id": "builtin",
+        "superType": "function"
+      },
+      {
+        "id": "stringEscape",
+        "superType": "string"
+      },
+      {
+        "id": "unknownEscape",
+        "superType": "string"
+      },
+      {
+        "id": "placeholder",
+        "superType": "string"
+      }
+    ],
+    "configuration": {
+      "title": "Go Template Support",
+      "properties": {
+        "go-template.languages": {
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
+          "description": "language id, like \"toml\", \"yaml\", etc."
+        },
+        "go-template.patterns": {
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "A file glob pattern to match file paths against. This can either be a glob pattern string (like `**/*.yaml` or `**/*.{yaml,yml}`).\nGlob patterns can have the following syntax:\n\n* `*` to match one or more characters in a path segment\n* `?` to match on one character in a path segment\n* `**` to match any number of path segments, including none\n* `{}` to group conditions (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript files)\n* `[]` to declare a range of characters to match in a path segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)\n* `[!...]` to negate a range of characters to match in a path segment (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)\n\nNote: a backslash (`\\`) is not valid within a glob pattern."
+        }
+      }
+    }
   }
 }
