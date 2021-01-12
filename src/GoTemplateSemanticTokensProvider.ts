@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import TokenType from './tokenType';
-import getRegexp, { isCommentBegin, isEnd, isRawStringBegin, matchType, regexBegin } from './match';
+import regex, { isCommentBegin, isEnd, isRawStringBegin, matchType, regexBegin, stringEscapeMatchList } from './match';
 
 type ParsedToken = {
   line: number;
@@ -34,7 +34,7 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
     }
     let continuing: ContinueType = ContinueType.notContinue;
     for (const [line, content] of source.split(eol).entries()) {
-      const regex = getRegexp();
+      regex.lastIndex = 0; // Reset regex
       while (true) {
         // Continue comment or raw string
         if (continuing !== ContinueType.notContinue) {
@@ -65,7 +65,7 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
           break;
         }
         const begin = match.index;
-        const length = match[1].length;
+        const length = match[0].length;
         // Comment or raw, may contains Line-Break
         if (isCommentBegin(match)) {
           continuing = ContinueType.comment;
@@ -89,18 +89,17 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
         // End of Go Template
         if (isEnd(match)) {
           res.push(...temp, { line, begin, length, type: TokenType.end });
-          // res.push({
-          //   line: temp[0].line,
-          //   begin: temp[0].begin,
-          //   length: temp[temp.length - 1].begin - temp[0].begin + temp[temp.length - 1].length,
-          //   type: TokenType.goTemplate,
-          // });
           temp = [];
           continue;
         }
         const type = matchType(match);
         if (type) {
-          temp.push({ line, begin, length, type });
+          if (type === TokenType.string) {
+            const escapes = this.parseStringEscape(line, begin, match[0]);
+            temp.push(...escapes);
+          } else {
+            temp.push({ line, begin, length, type });
+          }
         }
       }
     }
@@ -108,5 +107,34 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
       res.push(...temp);
     }
     return res;
+  }
+
+  private parseStringEscape(line: number, offset: number, content: string): ParsedToken[] {
+    const res: ParsedToken[] = [];
+    for (const { regex, type } of stringEscapeMatchList) {
+      regex.lastIndex = 0;
+      while (true) {
+        const match = regex.exec(content);
+        if (!match) {
+          break;
+        }
+        const begin = offset + match.index;
+        const length = match[0].length;
+        res.push({ line, begin, length, type });
+      }
+    }
+    res.sort((a, b) => (a.begin < b.begin ? -1 : 1));
+    let begin = offset;
+    const originRes: ParsedToken[] = [];
+    for (const r of res) {
+      if (r.begin > begin) {
+        originRes.push({ line, begin, length: r.begin - begin, type: TokenType.string });
+      }
+      begin = r.begin + r.length;
+    }
+    if (begin < offset + content.length) {
+      originRes.push({ line, begin, length: offset + content.length - begin, type: TokenType.string });
+    }
+    return [...res, ...originRes];
   }
 }
