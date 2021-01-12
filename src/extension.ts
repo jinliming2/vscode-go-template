@@ -12,6 +12,11 @@ const getConfig = (): { languages: vscode.DocumentFilter[]; patterns: vscode.Doc
 };
 
 const registerProvider = (context: vscode.ExtensionContext, selector: vscode.DocumentFilter[]) => {
+  let disposable: { dispose(): any } | undefined;
+  while ((disposable = context.subscriptions.pop())) {
+    disposable.dispose();
+  }
+
   if (selector.length > 0) {
     context.subscriptions.push(
       vscode.languages.registerDocumentSemanticTokensProvider(
@@ -32,11 +37,11 @@ export const activate = (context: vscode.ExtensionContext) => {
       return;
     }
 
-    let disposable: { dispose(): any } | undefined;
-    while ((disposable = context.subscriptions.pop())) {
-      disposable.dispose();
-    }
+    const { languages, patterns } = getConfig();
+    registerProvider(context, [...languages, ...patterns]);
+  });
 
+  vscode.commands.registerCommand('go-template.reload', () => {
     const { languages, patterns } = getConfig();
     registerProvider(context, [...languages, ...patterns]);
   });
