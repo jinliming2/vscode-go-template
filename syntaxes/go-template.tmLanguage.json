@@ -10,6 +10,9 @@
       "include": "#operators"
     },
     {
+      "include": "#variables"
+    },
+    {
       "include": "#keywords"
     },
     {
@@ -80,10 +83,18 @@
         {
           "match": "\\|",
           "name": "keyword.operator.pipe.go-template"
-        },
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
         {
           "match": "\\.\\w*",
-          "name": "keyword.operator.sub.go-template"
+          "name": "variable.sub.property.go-template"
+        },
+        {
+          "match": "\\$\\w+",
+          "name": "variable.other.readwrite.go-template"
         }
       ]
     },
