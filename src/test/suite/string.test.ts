@@ -23,7 +23,7 @@ suite('Parse String', () => {
       content: '  {{"this is string"}}  ',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 2, 2, TokenType.begin, 0,
@@ -37,7 +37,7 @@ suite('Parse String', () => {
       content: '  {{`this is raw string`}}  ',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 2, 2, TokenType.begin, 0,
@@ -53,7 +53,7 @@ suite('Parse String', () => {
   raw string \`}}  `,
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 2, 4, TokenType.begin, 0,
@@ -69,7 +69,7 @@ suite('Parse String', () => {
       content: '{{"\\123 \\n\\r\\t \\" \\xFF\\u1234\\U1234ABCD"}}',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 0, 2, TokenType.begin, 0,
@@ -95,7 +95,7 @@ suite('Parse String', () => {
       content: '{{"abcd\\89\\c\\defgh"}}',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 0, 2, TokenType.begin, 0,
@@ -114,7 +114,7 @@ suite('Parse String', () => {
       content: '{{"%s%d%t %[12]s"}}',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 0, 2, TokenType.begin, 0,

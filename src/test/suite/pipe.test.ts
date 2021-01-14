@@ -23,7 +23,7 @@ suite('Parse Pipe', () => {
       content: 'xxxxx{{ "value" | print }}',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 5, 2, TokenType.begin, 0,
@@ -39,7 +39,7 @@ suite('Parse Pipe', () => {
       content: '{{"put" | printf "%s%s" "out" | printf "%q"}}',
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       0, 0, 2, TokenType.begin, 0,

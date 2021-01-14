@@ -43,7 +43,7 @@ suite('Parse Builtin', () => {
       `,
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       // {{and .X .Y}}

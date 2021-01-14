@@ -26,7 +26,7 @@ suite('Parse Pipeline', () => {
       `,
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       1, 8, 2, TokenType.begin, 0,
@@ -48,7 +48,7 @@ suite('Parse Pipeline', () => {
       `,
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       1, 8, 2, TokenType.begin, 0,
@@ -74,7 +74,7 @@ suite('Parse Pipeline', () => {
       `,
     });
     const tokens = await provider.provideDocumentSemanticTokens(doc);
-    expect(tokens?.data).to.be.an.instanceOf(Uint32Array);
+    expect(tokens?.data).to.be.Uint32Array();
     // prettier-ignore
     expect(tokens?.data).to.be.equalTo([
       1, 8, 2, TokenType.begin, 0,
