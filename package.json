@@ -34,20 +34,25 @@
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "yarn run compile",
+    "clean": "rm -rf ./{out,coverage,.nyc_output}",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "FORCE_COLOR=1 node ./out/test/runTest.js"
   },
   "devDependencies": {
     "@tsconfig/node12": "1.0.7",
+    "@types/chai": "4.2.14",
+    "@types/chai-arrays": "1.0.3",
     "@types/glob": "7.1.3",
     "@types/mocha": "8.2.0",
     "@types/node": "12",
     "@types/vscode": "1.44.0",
     "@typescript-eslint/eslint-plugin": "4.12.0",
     "@typescript-eslint/parser": "4.12.0",
+    "chai": "4.2.0",
+    "chai-arrays": "2.2.0",
     "eslint": "7.17.0",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-prettier": "3.3.1",
@@ -205,14 +210,14 @@
       "title": "Go Template Support",
       "properties": {
         "go-template.languages": {
-          "type":"array",
+          "type": "array",
           "items": {
             "type": "string"
           },
           "description": "language id, like \"toml\", \"yaml\", etc."
         },
         "go-template.patterns": {
-          "type":"array",
+          "type": "array",
           "items": {
             "type": "string"
           },

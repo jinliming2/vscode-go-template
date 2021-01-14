@@ -56,8 +56,8 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
           if (!match) {
             break;
           }
-          temp = [{ line, begin: match.index || 0, length: 2, type: TokenType.begin }];
-          regex.lastIndex = match.index + 2;
+          temp = [{ line, begin: match.index || 0, length: match[0].length, type: TokenType.begin }];
+          regex.lastIndex = match.index + match[0].length;
           continue;
         }
         const match = regex.exec(content);
@@ -84,6 +84,7 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
           // end
           temp.push({ line, begin, length: end + endToken.length - begin, type });
           regex.lastIndex = end + endToken.length;
+          continuing = ContinueType.notContinue;
           continue;
         }
         // End of Go Template

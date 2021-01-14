@@ -77,7 +77,7 @@
     "operators": {
       "patterns": [
         {
-          "match": ":=",
+          "match": ":?=",
           "name": "keyword.operator.assignment.go-template"
         },
         {
@@ -93,7 +93,7 @@
           "name": "variable.sub.property.go-template"
         },
         {
-          "match": "\\$\\w+",
+          "match": "\\$\\w*",
           "name": "variable.other.readwrite.go-template"
         }
       ]
@@ -105,7 +105,7 @@
           "name": "keyword.control.go-template"
         },
         {
-          "match": "\\b(and|call|html|index|js|len|not|or|print(f|ln)?|urlquery|eq|ne|lt|le|gt|ge)\\b",
+          "match": "\\b(and|call|html|index|slice|js|len|not|or|print(f|ln)?|urlquery|eq|ne|lt|le|gt|ge)\\b",
           "name": "support.function.builtin.go-template"
         }
       ]

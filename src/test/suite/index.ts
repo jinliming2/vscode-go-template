@@ -14,8 +14,8 @@ export const run = async (): Promise<void> => {
     hookRunInContext: true,
     hookRunInThisContext: true,
   });
-  await nyc.reset();
   nyc.wrap();
+  await nyc.reset();
 
   // Create the mocha test
   const mocha = new Mocha({
@@ -52,11 +52,23 @@ export const run = async (): Promise<void> => {
     });
   } catch (e) {
     console.error(e);
+    throw e;
   }
 
   try {
     nyc.writeCoverageFile();
+
+    // Hack: https://github.com/microsoft/vscode/issues/74173
+    const writeBuffer: string[] = [];
+    process.stdout.write = (buffer: string): boolean => {
+      writeBuffer.push(buffer);
+      return true;
+    };
+    process.stdout.columns = 120;
+
     await nyc.report();
+
+    console.log(writeBuffer.join(''));
   } catch (e) {
     console.error(e);
     throw e;

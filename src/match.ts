@@ -2,7 +2,7 @@ import TokenType from './tokenType';
 
 const control = ['if', 'else', 'range', 'template', 'with', 'end', 'nil', 'with', 'define', 'block'];
 // prettier-ignore
-const builtin = ['and', 'call', 'html', 'index', 'js', 'len', 'not', 'or', 'print', 'printf', 'println', 'urlquery', 'eq', 'ne', 'lt', 'le', 'gt', 'ge'];
+const builtin = ['and', 'call', 'html', 'index', 'slice', 'js', 'len', 'not', 'or', 'print', 'printf', 'println', 'urlquery', 'eq', 'ne', 'lt', 'le', 'gt', 'ge'];
 
 export const regexBegin = /\{\{(-\s)?/g;
 
@@ -12,8 +12,8 @@ export default new RegExp(
     '/\\*', // comment
     '`', // raw string
     '".*?(?<!(?<!\\\\)\\\\)"', // string
-    '\\$\\w+', // variable
-    ':=', // assignment
+    '\\$\\w*', // variable
+    ':?=', // assignment
     '\\|', // pipe
     '\\.\\w*', // property
     `\\b(${control.join('|')})\\b`, // control
@@ -23,7 +23,7 @@ export default new RegExp(
 );
 
 const regexStringEscape = /\\([0-7]{3}|[\\abfnrtv'"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})/g;
-const regexUnknownEscape = /\\[^0-7xuUabfnrtv']/g;
+const regexUnknownEscape = /\\[^0-7xuUabfnrtv'"]/g;
 const regexPlaceholder = /%(\[\d+\])?([+#\-0\x20]{,2}((\d+|\*)?(\.?(\d+|\*|(\[\d+\])\*?)?(\[\d+\])?)?))?[vT%tbcdoqxXUbeEfFgGspw]/g;
 
 export const stringEscapeMatchList = [
@@ -40,7 +40,7 @@ export const matchType = (m: RegExpExecArray): TokenType | undefined => {
     return TokenType.string;
   } else if (m[1].startsWith('$')) {
     return TokenType.variable;
-  } else if (m[1] === ':=') {
+  } else if (m[1].endsWith('=')) {
     return TokenType.assignment;
   } else if (m[1] === '|') {
     return TokenType.pipe;

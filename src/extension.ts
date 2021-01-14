@@ -42,6 +42,7 @@ export const activate = (context: vscode.ExtensionContext) => {
   });
 
   vscode.commands.registerCommand('go-template.reload', () => {
+    vscode.window.showInformationMessage('Reloading Go Template Syntax Support.');
     const { languages, patterns } = getConfig();
     registerProvider(context, [...languages, ...patterns]);
   });
