@@ -7,7 +7,7 @@ export const run = async (): Promise<void> => {
   const nyc = new NYC({
     cwd: path.join(__dirname, '..', '..', '..'),
     exclude: ['**/test/**', '.vscode-test/**'],
-    reporter: ['text', 'html'],
+    reporter: ['text', 'html', 'lcovonly'],
     all: true,
     instrument: true,
     hookRequire: true,

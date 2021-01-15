@@ -1,0 +1,44 @@
+on:
+  - push
+  - pull_request
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: yarn
+      - name: Run test (for Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a yarn test
+      - name: Run test
+        if: runner.os != 'Linux'
+        run: yarn test
+      - name: Report coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: ${{ matrix.os }}
+          parallel: true
+  finish:
+    name: Finish coverage
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
