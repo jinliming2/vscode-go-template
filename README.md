@@ -5,6 +5,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/jinliming2/vscode-go-template.svg)](https://github.com/jinliming2/vscode-go-template/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/jinliming2/vscode-go-template.svg)](https://github.com/jinliming2/vscode-go-template/network)
 [![GitHub issues](https://img.shields.io/github/issues/jinliming2/vscode-go-template.svg)](https://github.com/jinliming2/vscode-go-template/issues)
+[![Coverage Status](https://coveralls.io/repos/github/jinliming2/vscode-go-template/badge.svg?branch=master)](https://coveralls.io/github/jinliming2/vscode-go-template?branch=master)
 
 Go Template Syntax Highlight Support for VSCode.
 
@@ -17,34 +18,29 @@ Go Template Syntax Highlight Support for VSCode.
 
 - Support syntax highlighting for Go Template embedded in literal string in Go source file.
 
-   ![Go](./assets/screenshots/go.png)
+  ![Go](./assets/screenshots/go.png)
+
 - Support syntax highlighting for Go Template files: `*.go.txt`, `*.go.tpl`, `*.go.tmpl`, `*.gtpl`.
 
-   ![Template](./assets/screenshots/tpl.png)
+  ![Template](./assets/screenshots/tpl.png)
+
 - Support syntax highlighting for Go Template embedded in `HTML`, `JS`, and `CSS` files.
 
-   ![HTML](./assets/screenshots/html.png)
+  ![HTML](./assets/screenshots/html.png)
+
 - Support syntax highlighting for Go Template embedded in unknown extension files which begin with Go Template Comment. Ex: `{{ /* Go Template */ }}`.
 
-   ![Comment](./assets/screenshots/comment.png)
+  ![Comment](./assets/screenshots/comment.png)
+
+- Support syntax highlighting for any other custom specified file extensions.
+
+  ![Custom](./assets/screenshots/custom.png)
 
 ## Known Issues
 
-1. Template syntax highlighting in JS and CSS files may cause syntax error.
+1. This extension cannot bypass grammar check error from Language Server.
+1. Template syntax highlighting in some languages may need to reload extension. (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> `go-template.reload`)
 
 ## Release Notes
 
-### 0.0.3 (2020-12-09)
-
-- Fix: syntax error when missing template-ending in go source.
-
-### 0.0.2 (2020-12-09)
-
-- Support syntax highlighting for Go Template embedded in literal string in Go source file.
-- Support syntax highlighting for Go Template files: `*.gtpl`.
-
-### 0.0.1 (2020-09-09)
-
-- Support syntax highlighting for Go Template files: `*.go.txt`, `*.go.tpl`, `*.go.tmpl`.
-- Support syntax highlighting for Go Template embedded in `HTML`, `JS`, and `CSS` files.
-- Support syntax highlighting for Go Template embedded in unknown extension files which begin with `{{ /* Go Template */ }}`.
+[Change Log](./CHANGELOG.md)

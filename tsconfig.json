@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/node12/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "out",
+    "sourceMap": true,
+    "rootDir": "src",
+    /* Additional Checks */
+    "noImplicitReturns": true, // Report error when not all code paths in function return a value.
+    "noUnusedParameters": true // Report errors on unused parameters.
+  },
+  "exclude": ["node_modules", ".vscode-test"]
+}
