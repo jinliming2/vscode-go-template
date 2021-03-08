@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Markdown Go Template",
+  "scopeName": "text.markdown.go-template.codeblock",
+  "injectionSelector": "L:text.html.markdown",
+  "patterns": [
+    {
+      "include": "#go-template-code-block"
+    }
+  ],
+  "repository": {
+    "go-template-code-block": {
+      "begin": "(?:^|\\G)([\\t ]*)(`{3,}|~{3,})[\\t ]*(?i:(go-template)([\\t ]+[^`~\r\n]*)?$)",
+      "beginCaptures": {
+        "2": {
+          "name": "punctuation.definition.markdown"
+        },
+        "3": {
+          "name": "fenced_code.block.language"
+        },
+        "4": {
+          "name": "fenced_code.block.language.attributes"
+        }
+      },
+      "name": "markup.fenced_code.block.markdown",
+      "end": "(?:^|\\G)(\\1|[\\t ]{0,3})(\\2)[\\t ]*$",
+      "endCaptures": {
+        "3": {
+          "name": "punctuation.definition.markdown"
+        }
+      },
+      "contentName": "meta.embedded.block.go-template",
+      "patterns": [
+        {
+          "include": "text.injection.go-template"
+        }
+      ]
+    }
+  }
+}

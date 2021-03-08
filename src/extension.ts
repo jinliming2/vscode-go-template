@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import GoTemplateSemanticTokensProvider, { goTemplateLegend } from './GoTemplateSemanticTokensProvider';
+import MarkdownGoTemplateSemanticTokensProvider from './MarkdownGoTemplateSemanticTokensProvider';
 
 const CONFIG_SECTION = 'go-template';
 
@@ -26,6 +27,14 @@ const registerProvider = (context: vscode.ExtensionContext, selector: vscode.Doc
       ),
     );
   }
+
+  context.subscriptions.push(
+    vscode.languages.registerDocumentSemanticTokensProvider(
+      [{ language: 'markdown' }],
+      new MarkdownGoTemplateSemanticTokensProvider(),
+      goTemplateLegend,
+    ),
+  );
 };
 
 export const activate = (context: vscode.ExtensionContext) => {

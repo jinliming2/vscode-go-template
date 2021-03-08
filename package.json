@@ -115,9 +115,20 @@
           "source.css",
           "source.js",
           "source.json",
-          "text.html",
+          "text.html.derivative",
           "text.xml"
         ]
+      },
+      {
+        "language": "go-template",
+        "scopeName": "text.markdown.go-template.codeblock",
+        "path": "./syntaxes/markdown.go-template.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.go-template": "go-template"
+        }
       }
     ],
     "semanticTokenScopes": [
