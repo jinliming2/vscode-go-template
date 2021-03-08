@@ -81,7 +81,7 @@
           ".go.tmpl",
           ".gtpl"
         ],
-        "firstLine": "\\s*\\{\\{(-\\s)?\\/\\*.*?\\*\\/(\\s-)?\\}\\}\\s*",
+        "firstLine": "[\\t ]*\\{\\{(-[\\t ])?\\/\\*.*?\\*\\/([\\t ]-)?\\}\\}[\\t ]*",
         "configuration": "./language-configuration.json"
       }
     ],
