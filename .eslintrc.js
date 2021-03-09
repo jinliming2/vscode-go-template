@@ -13,7 +13,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
-  'extends': ['eslint:recommended', 'plugin:prettier/recommended', 'prettier/standard', 'prettier/unicorn'],
+  'extends': ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   rules: {
     '@typescript-eslint/naming-convention': 'warn',
     '@typescript-eslint/semi': 'warn',

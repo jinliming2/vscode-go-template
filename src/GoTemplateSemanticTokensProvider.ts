@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import TokenType from './tokenType';
 import regex, { isCommentBegin, isEnd, isRawStringBegin, matchType, regexBegin, stringEscapeMatchList } from './match';
 
-type ParsedToken = {
+export type ParsedToken = {
   line: number;
   begin: number;
   length: number;
@@ -24,7 +24,7 @@ export default class GoTemplateSemanticTokensProvider implements vscode.Document
     return builder.build();
   }
 
-  private parseSource(source: string, eol: string): ParsedToken[] {
+  protected parseSource(source: string, eol: string): ParsedToken[] {
     const res: ParsedToken[] = [];
     let temp: ParsedToken[] = [];
     enum ContinueType {

@@ -4,11 +4,11 @@ const control = ['if', 'else', 'range', 'template', 'with', 'end', 'nil', 'with'
 // prettier-ignore
 const builtin = ['and', 'call', 'html', 'index', 'slice', 'js', 'len', 'not', 'or', 'print', 'printf', 'println', 'urlquery', 'eq', 'ne', 'lt', 'le', 'gt', 'ge'];
 
-export const regexBegin = /\{\{(-\s)?/g;
+export const regexBegin = /\{\{(-[\t ])?/g;
 
 export default new RegExp(
   `(${[
-    '(\\s-)?\\}\\}', // end
+    '([\\t ]-)?\\}\\}', // end
     '/\\*', // comment
     '`', // raw string
     '".*?(?<!(?<!\\\\)\\\\)"', // string

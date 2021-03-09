@@ -10,13 +10,13 @@
   ],
   "repository": {
     "go-template-tag": {
-      "begin": "\\{\\{-?\\s*",
+      "begin": "\\{\\{-?[\\t ]*",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.embedded.begin.go-template"
         }
       },
-      "end": "\\s*-?\\}\\}|(?<!\\\\)(?=\")",
+      "end": "[\\t ]*-?\\}\\}|(?<!\\\\)(?=\")",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.embedded.end.go-template"
