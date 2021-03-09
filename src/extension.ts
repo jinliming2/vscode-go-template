@@ -13,7 +13,7 @@ const getConfig = (): { languages: vscode.DocumentFilter[]; patterns: vscode.Doc
 };
 
 const registerProvider = (context: vscode.ExtensionContext, selector: vscode.DocumentFilter[]) => {
-  let disposable: { dispose(): any } | undefined;
+  let disposable: { dispose(): void } | undefined;
   while ((disposable = context.subscriptions.pop())) {
     disposable.dispose();
   }
@@ -37,7 +37,7 @@ const registerProvider = (context: vscode.ExtensionContext, selector: vscode.Doc
   );
 };
 
-export const activate = (context: vscode.ExtensionContext) => {
+export const activate = (context: vscode.ExtensionContext): void => {
   const { languages, patterns } = getConfig();
   registerProvider(context, [...languages, ...patterns]);
 
