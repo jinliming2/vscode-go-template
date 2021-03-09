@@ -24,6 +24,10 @@ Go Template Syntax Highlight Support for VSCode.
 
   ![Template](./assets/screenshots/tpl.png)
 
+- Support syntax highlighting for Go Template embedded in Markdown.
+
+  ![Markdown](./assets/screenshots/markdown.png)
+
 - Support syntax highlighting for Go Template embedded in `HTML`, `JS`, and `CSS` files.
 
   ![HTML](./assets/screenshots/html.png)
@@ -43,4 +47,4 @@ Go Template Syntax Highlight Support for VSCode.
 
 ## Release Notes
 
-[Change Log](./CHANGELOG.md)
+[Changelog](./CHANGELOG.md)
