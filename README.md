@@ -32,7 +32,7 @@ Go Template Syntax Highlight Support for VSCode.
 
   ![HTML](./assets/screenshots/html.png)
 
-- Support syntax highlighting for Go Template embedded in unknown extension files which begin with Go Template Comment. Ex: `{{ /* Go Template */ }}`.
+- Support syntax highlighting for Go Template embedded in unknown extension files which begin with Go Template Comment. Ex: `{{- /* Go Template */ -}}`.
 
   ![Comment](./assets/screenshots/comment.png)
 
